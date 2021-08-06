@@ -1,2 +1,3 @@
-# mysql_sql
-mysql + sql + DataGrip
+MySQL + SQL + DataGrip exercises
+
+https://www.sql-ex.ru
