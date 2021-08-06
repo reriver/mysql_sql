@@ -1,5 +1,6 @@
 show databases;
 use computers;
+use bank;
 show tables;
 
 SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'Laptop';
@@ -11,10 +12,12 @@ select column_name from information_schema.columns where table_name='Laptop';
 SELECT model, speed, hd
 FROM PC
 WHERE price < 500;
+
 #лишнее
 SELECT Product.model, PC.speed, PC.hd
 FROM Product, PC
 WHERE Product.model = PC.model AND price < 500;
+
 #02 SELECT
 # Найдите производителей принтеров. Вывести: maker
 SELECT DISTINCT Product.maker
@@ -118,6 +121,29 @@ SELECT AVG(speed)
 FROM PC
 JOIN Product L on PC.model = L.model
 WHERE maker = 'A';
+
+# 15 Найдите размеры жестких дисков, совпадающих у двух и более PC. Вывести: HD
+# Get hard drive capacities that are identical for two or more PCs. Result set: hd.
+SELECT PC.hd
+FROM PC
+GROUP BY PC.hd
+HAVING COUNT(hd) >= 2;
+
+# 16 Get pairs of PC models with identical speeds and the same RAM capacity. Each resulting pair should be displayed only once, i.e. (i, j) but not (j, i).
+# Result set: model with the bigger number, model with the smaller number, speed, and RAM.
+# Найдите пары моделей PC, имеющих одинаковые скорость и RAM. В результате каждая пара
+# указывается только один раз, т.е. (i,j), но не (j,i), Порядок вывода: модель с большим
+# номером, модель с меньшим номером, скорость и RAM.
+SELECT DISTINCT p1.model, p2.model, p1.speed, p1.ram
+FROM PC p1, PC p2
+WHERE p1.speed = p2.speed AND p1.ram = p2.ram AND p1.model > p2.model
+
+# 17 Найдите модели ПК-блокнотов, скорость которых меньше скорости каждого из ПК.
+# Вывести: type, model, speed
+# Get the laptop models that have a speed smaller than the speed of any PC.
+# Result set: type, model, speed.
+
+
 
 
 
