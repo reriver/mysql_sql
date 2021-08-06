@@ -47,6 +47,7 @@ FROM Laptop
 INNER JOIN Product
 ON Product.model = Laptop.model
 WHERE Laptop.hd >= 10;
-
+#07 Найдите номера моделей и цены всех имеющихся в продаже продуктов (любого типа)
+# производителя B (латинская буква).
 
 
